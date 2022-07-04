@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sven-monitor</title>
+    <style>
+        .div{
+            display: flex;
+            width: 200px;
+            height: 200px;
+            flex-direction: column;
+        }
+        .btn{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <button onclick="jsError()" class="btn">jsError</button>
+        <button onclick="resourceError()" class="btn">资源加载错误</button>
+        <button onclick="promiseError()" class="btn">promise加载错误</button>
+
+    </div>
+    🇸<script>
+        function jsError(){
+            window.aaa.error = 'error'
+        }
+        function resourceError(){
+            console.log('aa')
+            var newscript = document.createElement('script');
+            newscript.setAttribute('type','text/javascript');
+            newscript.setAttribute('src','https://www.google-analytics.com/2.js');
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(newscript);
+        }
+        function promiseError(){
+            const promise = new Promise((resolve,reject)=>{
+                reject(100)
+            })
+            promise.then(res=>{
+                console.log(res,'res')
+            })
+        }
+    </script>
+</body>
+</html>
